@@ -10,12 +10,11 @@ def sidebar_page():
         &nbsp;  
 
         ## Team Info:  
-        ***  
-        Hritwik N. Edavalath  
-        *hritwikdileep@gmail.com*  
         &nbsp;  
 
         Aneeta Shajan      
         Ajay Nair   
         Joel Nickson   
+        Hritwik N. Edavalath  
+        *hritwikdileep@gmail.com*  
     ''')
