@@ -15,14 +15,9 @@ def sidebar_page():
         *hritwikdileep@gmail.com*  
         &nbsp;  
 
-        Aneeta Shajan  
-        *aneeta468@gmail.com*  
-        &nbsp;  
+        Aneeta Shajan      
 
-        Ajay Nair  
-        *ajaynair000@gmail.com*  
-        &nbsp;  
+        Ajay Nair   
 
-        Joel Nickson  
-        *joel2000nickson@gmail.com*  
+        Joel Nickson   
     ''')
