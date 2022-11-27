@@ -9,9 +9,8 @@ def sidebar_page():
         &nbsp;  
         &nbsp;  
 
-        ## Team Info:  
+        ## Team Info  
         &nbsp;  
-
         Aneeta Shajan      
         Ajay Nair   
         Joel Nickson   
