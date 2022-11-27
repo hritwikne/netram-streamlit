@@ -37,8 +37,8 @@ with app_view:
         language = st.radio('Which language to look for in the image?', ["English", "Malayalam"])    
 
     with c2:
-        choice = st.radio('Are you uploading an image cropped to the word?', ["Yes, don't crop (preferred)", "No, crop it"])
-        crop = True if choice=="No, crop it" else False
+        choice = st.radio('Are you uploading an image cropped to the word?', ["Yes, don't crop (preferred)", "No, crop it automatically"])
+        crop = True if choice=="No, crop it automatically" else False
 
     #st.info("💡 Upload a cropped word image, rather than uncropped, for better prediction accuracy")
     st.markdown(" ")
