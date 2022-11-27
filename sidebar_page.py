@@ -7,13 +7,14 @@ def sidebar_page():
         done as a part of final year coursework of Bachelor of Technology in Computer Science & Engineering.  
         &nbsp;  
         &nbsp;  
-        &nbsp;  
+        &nbsp; 
+        &nbsp;   
 
         ## Team Info  
         &nbsp;  
         Aneeta Shajan      
         Ajay Nair   
         Joel Nickson   
-        Hritwik N. Edavalath  
+        Hritwik Edavalath  
         *hritwikdileep@gmail.com*  
     ''')
