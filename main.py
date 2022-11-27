@@ -32,7 +32,6 @@ with demo_view:
     with uploadTab:
         st.markdown("   ")
         st.info("Upload a cropped word image for better prediction accuracy")
-        st.markdown(" "); st.markdown(" ")
         file = st.file_uploader(f'Please upload the word image(s):', accept_multiple_files=True)
         st.markdown(" "); st.markdown(" ")
         displayOriginal = st.checkbox('Show the cropped input word image along with the result', key=1)
@@ -44,7 +43,6 @@ with demo_view:
 
     with takePictureTab:
         st.info("Upload a cropped word image for better prediction accuracy")
-        st.markdown(" "); st.markdown(" ")
         cameraToggle = st.checkbox("Enable camera")
         if cameraToggle:
             file = st.camera_input("Take a picture")
