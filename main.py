@@ -26,12 +26,11 @@ with demo_view:
         choice = st.radio('Are you uploading a cropped word image?', ["Yes, don't crop", "No, crop it"])
         crop = False if choice=="Yes, don't crop" else True
 
-    st.markdown(" "); st.markdown(" ")
+    st.info("Upload a cropped word image for better prediction accuracy")
     uploadTab, takePictureTab = st.tabs(["Upload", "Take a picture"])
 
     with uploadTab:
         st.markdown("   ")
-        st.info("Upload a cropped word image for better prediction accuracy")
         file = st.file_uploader(f'Please upload the word image(s):', accept_multiple_files=True)
         st.markdown(" "); st.markdown(" ")
         displayOriginal = st.checkbox('Show the cropped input word image along with the result', key=1)
@@ -42,7 +41,6 @@ with demo_view:
             predict_menu(file, process, crop, language, displayOriginal, False)                    
 
     with takePictureTab:
-        st.info("Upload a cropped word image for better prediction accuracy")
         cameraToggle = st.checkbox("Enable camera")
         if cameraToggle:
             file = st.camera_input("Take a picture")
