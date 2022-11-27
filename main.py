@@ -35,7 +35,7 @@ with app_view:
         choice = st.radio('Are you uploading an image cropped to the word?', ["Yes, don't crop", "No, crop it"])
         crop = False if choice=="Yes, don't crop" else True
 
-    st.info("Upload a cropped word image, rather than non-cropped, for better prediction accuracy")
+    st.info("Upload a cropped word image, rather than uncropped, for better prediction accuracy")
     uploadTab, takePictureTab = st.tabs(["Upload", "Take a picture"])
 
     with uploadTab:
