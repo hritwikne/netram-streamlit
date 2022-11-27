@@ -2,6 +2,3 @@ torch
 torchvision
 opencv-python
 lmdb
-ffmpeg
-libsm6
-libxext6
