@@ -18,7 +18,7 @@ st.markdown('''
     **What does this app do?**  
     Given the image of a (isolated) word in a natural scene (like billboards, banners), 
     the app predicts the text in the image. This problem is formally stated as **Scene Text Recognition**.  
-    *Check out the report below for more details.*  
+    *Check out the demo and report below for more details.*  
 
 ''')
 
@@ -66,6 +66,7 @@ with app_view:
 
         if st.session_state["Correct"]:
             st.balloons()
+            st.write("I'm getting better than humans :smirk:")
             st.session_state["Correct"] = False
             st.session_state["Process"] = False
             
