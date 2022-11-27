@@ -9,8 +9,7 @@ def sidebar_page():
         &nbsp;  
         &nbsp;  
 
-        ## Team Info  
-        &nbsp;  
+        ## Team Info:  
         Hritwik N. Edavalath  
         *hritwikdileep@gmail.com*  
         &nbsp;  
