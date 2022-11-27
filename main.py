@@ -103,19 +103,19 @@ with app_view:
             st.session_state["Process"] = True
             
         if st.session_state["Process"]:
-            if st.button("Correct :thumbsup:", key=12):
+            if st.button("Correct", key=12):
                 st.session_state["Correct"] = True
-            if st.button("Incorrect :thumbsdown:", key=13):
+            if st.button("Incorrect", key=13):
                 st.session_state["Incorrect"] = True
 
         if st.session_state["Correct"]:
             st.balloons()
-            st.write("Am I getting better than humans :smirk:")
+            st.success("Am I getting better than humans :smirk:")
             st.session_state["Correct"] = False
             st.session_state["Process"] = False
             
         if st.session_state["Incorrect"]:
-            st.write("Sorry, maybe I should train more :confounded:")
+            st.error("Sorry, maybe I should train more :confounded:")
             st.session_state["Incorrect"] = False
             st.session_state["Process"] = False
 
