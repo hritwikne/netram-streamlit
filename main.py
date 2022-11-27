@@ -21,11 +21,12 @@ st.markdown('''
     *Check out the report below for more details.*  
 
 ''')
-demo_view, report_view = st.tabs(["Demo", "Report"])
+
+app_view, demo_view, report_view = st.tabs(["App", "Demo", "Report"])
 
 
 # demo 
-with demo_view:
+with app_view:
     c1, c2 = st.columns(2)
     with c1:
         language = st.radio('Which language to look for in the image?', ["English", "Malayalam"])    
@@ -87,6 +88,10 @@ with demo_view:
             file = [file]
             predict_menu(file, process, crop, language, displayOriginal, True) 
             
+
+
+with demo_view:
+    st.video('sample.mov')
 
 
 # report
