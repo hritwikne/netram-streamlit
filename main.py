@@ -17,10 +17,9 @@ st.markdown('''
     &nbsp;  
     **What does this app do?**  
     Given the image of a (isolated) word in a natural scene (like billboards, banners), 
-    the app predicts the text in it. This problem is formally stated as **Scene Text Recognition**.  
+    the app predicts the text in the image. This problem is formally stated as **Scene Text Recognition**.  
+    *Check out the report below for more details.*  
 
-    &nbsp;  
-    Check out the report for more details.
 ''')
 demo_view, report_view = st.tabs(["Demo", "Report"])
 
