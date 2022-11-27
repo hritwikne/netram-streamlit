@@ -4,7 +4,10 @@ from report_page import report_page
 from sidebar_page import sidebar_page
 
 # Webpage title
-st.set_page_config(page_title='Netram')
+st.set_page_config(
+    page_title='Netram',
+    page_icon="👁️"
+    )
 
 # sidebar
 with st.sidebar:
@@ -18,11 +21,12 @@ st.markdown('''
     **What does this app do?**  
     Given the image of a (isolated) word in a natural scene (like billboards, banners), 
     the app predicts the text in the image. This problem is formally stated as **Scene Text Recognition**.  
+      
     *Check out the demo and report below for more details.*  
 
 ''')
 
-app_view, demo_view, report_view = st.tabs(["App", "Demo", "Report"])
+app_view, demo_view, report_view, comments_view = st.tabs(["App", "Demo", "Report", "Comments"])
 
 
 # demo 
@@ -35,7 +39,7 @@ with app_view:
         choice = st.radio('Are you uploading an image cropped to the word?', ["Yes, don't crop", "No, crop it"])
         crop = False if choice=="Yes, don't crop" else True
 
-    st.info("Upload a cropped word image, rather than uncropped, for better prediction accuracy")
+    st.info("💡 Upload a cropped word image, rather than uncropped, for better prediction accuracy")
     uploadTab, takePictureTab = st.tabs(["Upload", "Take a picture"])
 
     with uploadTab:
@@ -121,3 +125,7 @@ with demo_view:
 # report
 with report_view:
     report_page()
+
+
+with comments_view:
+    pass
