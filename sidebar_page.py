@@ -9,7 +9,7 @@ def sidebar_page():
         &nbsp;  
         &nbsp;  
 
-        ## Team Eleven  
+        ## Our Team  
         &nbsp;  
         Hritwik N. Edavalath  
         *hritwikdileep@gmail.com*  
