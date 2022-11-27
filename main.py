@@ -2,6 +2,7 @@ import streamlit as st
 from predict_menu import predict_menu
 from report_page import report_page
 from sidebar_page import sidebar_page
+from PIL import Image
 
 # Webpage title
 st.set_page_config(
@@ -119,8 +120,31 @@ with app_view:
 
 
 with demo_view:
+    st.markdown("**How to use the app:**")
     st.video('sample.mov')
 
+    st.markdown('''**Sample images for testing the application:**''')
+    with st.expander("View English sample image:"):
+        st.image("demo_eng.jpg")
+
+    with open("demo_eng.jpg", "rb") as f:
+        btn = st.download_button(
+                label="Download English sample image",
+                data=f,
+                file_name="english_sample.jpg",
+                mime="image/jpg"
+                )
+    
+    with st.expander("View Malayalam sample image:"):
+        st.image("demo_mal.jpg")
+
+    with open("demo_mal.jpg", "rb") as f:
+        btn = st.download_button(
+                label="Download Malayalam sample image",
+                data=f,
+                file_name="malayalam_sample.jpg",
+                mime="image/jpg"
+                )
 
 # report
 with report_view:
@@ -128,4 +152,4 @@ with report_view:
 
 
 with comments_view:
-    pass
+    st.info("⚙️ The comments section is under development.")
