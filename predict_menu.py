@@ -30,7 +30,7 @@ def predict_menu(file, process, crop, language, displayOriginal, takePicture=Fal
                     st.markdown("**Predicted Text**")
                     st.success(pred)
                     if displayOriginal:
-                        st.markdown("**Cropped Image**")
+                        st.markdown("**Cropped Input Image**")
                         st.image(img_path)    
 
         if file:
