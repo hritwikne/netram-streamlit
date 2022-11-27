@@ -16,8 +16,6 @@ def sidebar_page():
         &nbsp;  
 
         Aneeta Shajan      
-
         Ajay Nair   
-
         Joel Nickson   
     ''')
