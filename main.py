@@ -27,6 +27,7 @@ with demo_view:
         crop = False if choice=="Yes, don't crop" else True
 
     st.markdown(" "); st.markdown(" ")
+    st.info("Upload a cropped word image for better prediction accuracy.")
     uploadTab, takePictureTab = st.tabs(["Upload", "Take a picture"])
 
     with uploadTab:
