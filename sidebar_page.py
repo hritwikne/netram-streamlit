@@ -11,7 +11,10 @@ def sidebar_page():
 
         ## Team Eleven  
         &nbsp;  
-        [Hritwik N. Edavalath](hritwikdileep@gmail.com)  
+        Hritwik N. Edavalath  
+        *hritwikdileep@gmail.com*  
+        &nbsp;  
+
         Aneeta Shajan      
         Ajay Nair   
         Joel Nickson   
