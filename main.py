@@ -41,6 +41,7 @@ with app_view:
         crop = True if choice=="No, crop it" else False
 
     #st.info("💡 Upload a cropped word image, rather than uncropped, for better prediction accuracy")
+    st.markdown(" ")
     uploadTab, takePictureTab = st.tabs(["Upload", "Take a picture"])
 
     with uploadTab:
