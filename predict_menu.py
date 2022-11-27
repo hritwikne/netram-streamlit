@@ -31,9 +31,8 @@ def predict_menu(file, process, crop, language, displayOriginal, takePicture=Fal
                     st.success(pred)
                     if displayOriginal:
                         st.markdown("**Cropped Image**")
-                        st.image(img_path)
-        
+                        st.image(img_path)    
+
         if file:
             os.remove(img_path)
-    
     return None

@@ -43,10 +43,36 @@ with demo_view:
         st.markdown(" "); st.markdown(" ")
         displayOriginal = st.checkbox('Show the cropped input word image along with the result', key=1)
         st.markdown(" "); st.markdown(" ")
+        if "Process" not in st.session_state:
+            st.session_state["Process"] = False
+        if "Correct" not in st.session_state:
+            st.session_state["Correct"] = False
+        if "Incorrect" not in st.session_state:
+            st.session_state["Incorrect"] = False
+        
         process = st.button('Process', key=3)
 
         if process:
-            predict_menu(file, process, crop, language, displayOriginal, False)                    
+            predict_menu(file, process, crop, language, displayOriginal, False) 
+            st.session_state["Process"] = True
+
+            
+        if st.session_state["Process"]:
+            if st.button("Correct"):
+                st.session_state["Correct"] = True
+            if st.button("Incorrect"):
+                st.session_state["Incorrect"] = True
+
+        if st.session_state["Correct"]:
+            st.balloons()
+            st.session_state["Correct"] = False
+            st.session_state["Process"] = False
+            
+        if st.session_state["Incorrect"]:
+            st.write("Sorry, maybe I should train more :confounded:")
+            st.session_state["Incorrect"] = False
+            st.session_state["Process"] = False
+            
 
     with takePictureTab:
         cameraToggle = st.checkbox("Enable camera")
@@ -59,7 +85,8 @@ with demo_view:
         
         if process:
             file = [file]
-            predict_menu(file, process, crop, language, displayOriginal, True)
+            predict_menu(file, process, crop, language, displayOriginal, True) 
+            
 
 
 # report
