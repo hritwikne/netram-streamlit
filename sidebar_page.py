@@ -21,6 +21,6 @@ def sidebar_page():
         *ajaynair000@gmail.com*  
         &nbsp;  
 
-        Joel Nickson 
+        Joel Nickson  
         *joel2000nickson@gmail.com*  
     ''')
