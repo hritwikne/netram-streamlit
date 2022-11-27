@@ -26,8 +26,8 @@ with demo_view:
         choice = st.radio('Are you uploading a cropped word image?', ["Yes, don't crop", "No, crop it"])
         crop = False if choice=="Yes, don't crop" else True
 
-    
-    st.info("Upload a cropped word image for better prediction accuracy.")
+    st.markdown(" "); st.markdown(" ")
+    st.info("Upload a cropped word image for better prediction accuracy")
     st.markdown(" "); st.markdown(" ")
     uploadTab, takePictureTab = st.tabs(["Upload", "Take a picture"])
 
