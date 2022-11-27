@@ -20,7 +20,7 @@ st.markdown('''
     the app predicts the text in it. This problem is formally stated as **Scene Text Recognition**.  
 
     &nbsp;  
-    Check out the report for more details. [under development]
+    Check out the report for more details.
 ''')
 demo_view, report_view = st.tabs(["Demo", "Report"])
 
