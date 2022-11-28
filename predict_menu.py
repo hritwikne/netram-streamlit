@@ -16,7 +16,11 @@ def predict_menu(file, process, crop, language, displayOriginal, takePicture=Fal
             with st.spinner(text='Processing your image'):
                 time.sleep(0.5)
                 if crop or takePicture:
-                    ctpn_predict.crop(img_path)
+                    try:
+                        ctpn_predict.crop(img_path)
+                    except:
+                        st.error("Couldn't process, please retake the image.")
+                        st.stop()
 
                 if language=='English':
                     pred = demo.predict(img_path)
