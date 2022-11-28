@@ -138,21 +138,21 @@ with app_view:
 
 with demo_view:
     st.markdown("**How to use the app:**")
-    st.video('sample.mov')
-
+    st.video('media/sample.mov')
+    st.markdown("***")
     st.markdown('''**What is a cropped word image?**''')
     
     with st.expander("View a normal word image"):
-        st.image("demo_eng.jpg")
+        st.image("media/demo_eng.jpg")
     
     with st.expander("View its cropped word image"):
-        st.image("cropped_demo.png")
+        st.image("media/cropped_demo.png")
 
     st.markdown("***")
 
     st.markdown('''**Need some sample images for testing the application?**''')
 
-    with open("demo_eng.jpg", "rb") as f:
+    with open("media/demo_eng.jpg", "rb") as f:
         btn = st.download_button(
                 label="Download English sample image",
                 data=f,
@@ -160,7 +160,7 @@ with demo_view:
                 mime="image/jpg"
                 )
 
-    with open("demo_mal.jpg", "rb") as f:
+    with open("media/demo_mal.jpg", "rb") as f:
         btn = st.download_button(
                 label="Download Malayalam sample image",
                 data=f,
@@ -178,16 +178,6 @@ with report_view:
 with comments_view:
     # st.info("⚙️ The comments section is under development.")
     comments_df = pd.read_csv("comments.csv")
-
-    with st.expander("💬 View Comments"):
-        for i in range(comments_df.shape[0]-1, -1, -1):
-            is_last = i == comments_df.shape[0]-1
-            is_new = "just_posted" in st.session_state and is_last
-            if is_new:
-                st.success("👇 Your comment was successfully posted.")
-
-            st.markdown(COMMENT_TEMPLATE_MD.format(comments_df['Name'][i], comments_df['Date'][i], comments_df['Comment'][i]))
-
     st.write("**Add your own public comment:**")
     form = st.form("comment")
     name = form.text_input("Name")
@@ -202,3 +192,12 @@ with comments_view:
         if "just_posted" not in st.session_state:
             st.session_state["just_posted"] = True
         st.experimental_rerun()
+    
+    with st.expander("💬 View Comments"):
+        for i in range(comments_df.shape[0]-1, -1, -1):
+            is_last = i == comments_df.shape[0]-1
+            is_new = "just_posted" in st.session_state and is_last
+            if is_new:
+                st.success("👇 Your comment was successfully posted.")
+
+            st.markdown(COMMENT_TEMPLATE_MD.format(comments_df['Name'][i], comments_df['Date'][i], comments_df['Comment'][i]))
