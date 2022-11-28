@@ -1,3 +1,5 @@
 *.mov
 *.toml
 *.csv
+
+.DS_Store
