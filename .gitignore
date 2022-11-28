@@ -1,4 +1,4 @@
-*.mov
+#*.mov
 *.toml
 #*.csv
 __pycache__/
