@@ -5,8 +5,7 @@ from sidebar_page import sidebar_page
 from datetime import datetime
 import pandas as pd
 
-COMMENT_TEMPLATE_MD = """**{} &nbsp;&nbsp; - &nbsp;&nbsp; {}**
-> {}"""
+COMMENT_TEMPLATE_MD = """**{} &nbsp;&nbsp; - &nbsp;&nbsp; {}** > {}"""
 
 def space(num_lines=1):
     """Adds empty lines to the Streamlit app."""
@@ -44,10 +43,12 @@ st.markdown("&nbsp;  ")
 with app_view:
     c1, c2 = st.columns(2)
     with c1:
-        language = st.radio('Which language to look for in the image?', ["English", "Malayalam"])    
+        language = st.radio('Which language to look for in the image?', ["English", "Malayalam"], index=1)  
 
     with c2:
-        choice = st.radio('Are you uploading an image cropped to the word?', ["Yes, don't crop (preferred)", "No, crop it automatically"])
+        choice = st.radio('Are you uploading an image cropped to the word?', 
+                          ["Yes, don't crop (preferred)", "No, crop it automatically"],
+                          help="💡 **For better prediction accuracy, provide an image that is cropped to just the word that needs to be recognised. Please refer the *demo* page for an example of what this means.**")
         crop = True if choice=="No, crop it automatically" else False
 
     #st.info("💡 Upload a cropped word image, rather than uncropped, for better prediction accuracy")
@@ -93,10 +94,14 @@ with app_view:
             
 
     with takePictureTab:
+        space(1)
         cameraToggle = st.checkbox("Enable camera")
+        st.info("Please provide camera access when prompted.")
+
         if cameraToggle:
             file = st.camera_input("Take a picture")
 
+        space(2)
         displayOriginal = st.checkbox('Show the cropped input word image along with the result', key=2)
         st.markdown(" "); st.markdown(" ")
         if "Process" not in st.session_state:
@@ -134,9 +139,17 @@ with demo_view:
     st.markdown("**How to use the app:**")
     st.video('sample.mov')
 
-    st.markdown('''**Sample images for testing the application:**''')
-    with st.expander("View English sample image:"):
+    st.markdown('''**What is a cropped word image?**''')
+    
+    with st.expander("View a normal word image"):
         st.image("demo_eng.jpg")
+    
+    with st.expander("View its cropped word image"):
+        st.image("cropped_demo.png")
+
+    st.markdown("***")
+
+    st.markdown('''**Need some sample images for testing the application?**''')
 
     with open("demo_eng.jpg", "rb") as f:
         btn = st.download_button(
@@ -145,9 +158,6 @@ with demo_view:
                 file_name="english_sample.jpg",
                 mime="image/jpg"
                 )
-    
-    with st.expander("View Malayalam sample image:"):
-        st.image("demo_mal.jpg")
 
     with open("demo_mal.jpg", "rb") as f:
         btn = st.download_button(
@@ -157,6 +167,8 @@ with demo_view:
                 mime="image/jpg"
                 )
 
+    
+
 # report
 with report_view:
     report_page()
@@ -165,6 +177,16 @@ with report_view:
 with comments_view:
     # st.info("⚙️ The comments section is under development.")
     comments_df = pd.read_csv("comments.csv")
+
+    with st.expander("💬 View Comments"):
+        for i in range(comments_df.shape[0]-1, -1, -1):
+            is_last = i == comments_df.shape[0]-1
+            is_new = "just_posted" in st.session_state and is_last
+            if is_new:
+                st.success("👇 Your comment was successfully posted.")
+
+            st.markdown(COMMENT_TEMPLATE_MD.format(comments_df['Name'][i], comments_df['Date'][i], comments_df['Comment'][i]))
+
     st.write("**Add your own public comment:**")
     form = st.form("comment")
     name = form.text_input("Name")
@@ -179,12 +201,3 @@ with comments_view:
         if "just_posted" not in st.session_state:
             st.session_state["just_posted"] = True
         st.experimental_rerun()
-    
-    with st.expander("💬 Comments"):
-        for i in range(comments_df.shape[0]-1, -1, -1):
-            is_last = i == comments_df.shape[0]-1
-            is_new = "just_posted" in st.session_state and is_last
-            if is_new:
-                st.success("👇 Your comment was successfully posted.")
-
-            st.markdown(COMMENT_TEMPLATE_MD.format(comments_df['Name'][i], comments_df['Date'][i], comments_df['Comment'][i]))
