@@ -5,7 +5,8 @@ from sidebar_page import sidebar_page
 from datetime import datetime
 import pandas as pd
 
-COMMENT_TEMPLATE_MD = """**{} &nbsp;&nbsp; - &nbsp;&nbsp; {}** > {}"""
+COMMENT_TEMPLATE_MD = """**{} &nbsp;&nbsp; - &nbsp;&nbsp; {}** 
+> {}"""
 
 def space(num_lines=1):
     """Adds empty lines to the Streamlit app."""
