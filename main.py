@@ -2,7 +2,17 @@ import streamlit as st
 from predict_menu import predict_menu
 from report_page import report_page
 from sidebar_page import sidebar_page
-from PIL import Image
+from datetime import datetime
+import pandas as pd
+
+COMMENT_TEMPLATE_MD = """**{} &nbsp;&nbsp; - &nbsp;&nbsp; {}**
+> {}"""
+
+def space(num_lines=1):
+    """Adds empty lines to the Streamlit app."""
+    for _ in range(num_lines):
+        st.write("")
+
 
 # Webpage title
 st.set_page_config(
@@ -153,4 +163,28 @@ with report_view:
 
 
 with comments_view:
-    st.info("⚙️ The comments section is under development.")
+    # st.info("⚙️ The comments section is under development.")
+    comments_df = pd.read_csv("comments.csv")
+    st.write("**Add your own public comment:**")
+    form = st.form("comment")
+    name = form.text_input("Name")
+    comment = form.text_area("Comment")
+    submit = form.form_submit_button("Add comment")
+
+    if submit:
+        date = datetime.now().strftime("%d/%m/%Y %H:%M") 
+        date += " UTC"
+        comments_df = comments_df.append({'Name' : name, 'Comment' : comment, 'Date' : date}, ignore_index = True)
+        comments_df.to_csv("comments.csv", index=False)
+        if "just_posted" not in st.session_state:
+            st.session_state["just_posted"] = True
+        st.experimental_rerun()
+    
+    with st.expander("💬 Comments"):
+        for i in range(comments_df.shape[0]-1, -1, -1):
+            is_last = i == comments_df.shape[0]-1
+            is_new = "just_posted" in st.session_state and is_last
+            if is_new:
+                st.success("👇 Your comment was successfully posted.")
+
+            st.markdown(COMMENT_TEMPLATE_MD.format(comments_df['Name'][i], comments_df['Date'][i], comments_df['Comment'][i]))
