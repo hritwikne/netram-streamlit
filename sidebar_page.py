@@ -16,5 +16,4 @@ def sidebar_page():
         Ajay Nair   
         Joel Nickson   
         Hritwik Edavalath  
-        *hritwikdileep@gmail.com*  
     ''')

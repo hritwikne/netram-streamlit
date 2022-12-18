@@ -37,7 +37,7 @@ st.markdown('''
 
 ''')
 
-app_view, demo_view, report_view, comments_view = st.tabs(["App", "Demo", "Report", "Comments"])
+app_view, demo_view, report_view, contact_view = st.tabs(["App", "Demo", "Report", "Contact Info"])
 st.markdown("&nbsp;  ")
 
 # demo 
@@ -175,29 +175,8 @@ with report_view:
     report_page()
 
 
-with comments_view:
-    # st.info("⚙️ The comments section is under development.")
-    comments_df = pd.read_csv("comments.csv")
-    st.write("**Add your own public comment:**")
-    form = st.form("comment")
-    name = form.text_input("Name")
-    comment = form.text_area("Comment")
-    submit = form.form_submit_button("Add comment")
-
-    if submit:
-        date = datetime.now().strftime("%d/%m/%Y %H:%M") 
-        date += " UTC"
-        comments_df = comments_df.append({'Name' : name, 'Comment' : comment, 'Date' : date}, ignore_index = True)
-        comments_df.to_csv("comments.csv", index=False)
-        if "just_posted" not in st.session_state:
-            st.session_state["just_posted"] = True
-        st.experimental_rerun()
-    
-    with st.expander("💬 View Comments"):
-        for i in range(comments_df.shape[0]-1, -1, -1):
-            is_last = i == comments_df.shape[0]-1
-            is_new = "just_posted" in st.session_state and is_last
-            if is_new:
-                st.success("👇 Your comment was successfully posted.")
-
-            st.markdown(COMMENT_TEMPLATE_MD.format(comments_df['Name'][i], comments_df['Date'][i], comments_df['Comment'][i]))
+with contact_view:
+    st.markdown('''
+    For any queries, concerns, or suggestions,  
+    please send us a mail at **hritwikdileep@gmail.com**
+    ''')
