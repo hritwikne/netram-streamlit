@@ -48,17 +48,18 @@ with app_view:
 
     with c2:
         choice = st.radio('Are you uploading an image cropped to the word?', 
-                          ["Yes, don't crop (preferred)", "No, crop it automatically"],
-                          help="💡 **For better prediction accuracy, provide an image that is cropped to just the word that needs to be recognised. Please refer the *demo* page for an example of what this means.**")
+                          ["Yes, don't crop (preferred)", "No, crop it automatically"])
         crop = True if choice=="No, crop it automatically" else False
 
     with st.expander("Why is a cropped word image a preferred input?"):
         st.markdown('''
         For an input image that is not cropped down to the word, two machine learning models are used in this application: 
         (1) detecting text in the image and cropping it, and (2) recognising the word in that cropped image.  
-        
+
         So providing an uncropped image would pass it through two different models, thus multiplying the error rates.
-        Therefore, for better predictions, provide a cropped word image so that only the recognition system has to be activated.
+        Therefore, for better predictions, provide a cropped word image so that only the recognition system has to be activated.  
+
+        *Check out the demo page to see what a cropped word image is.*
         ''')
 
     st.markdown(" ")
