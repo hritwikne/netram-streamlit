@@ -78,35 +78,11 @@ with app_view:
         space(2)
         displayOriginal = st.checkbox('Show the cropped input word image along with the result', key=2)
         st.markdown(" "); st.markdown(" ")
-        if "Process" not in st.session_state:
-            st.session_state["Process"] = False
-        if "Correct" not in st.session_state:
-            st.session_state["Correct"] = False
-        if "Incorrect" not in st.session_state:
-            st.session_state["Incorrect"] = False
 
         process = st.button('Process', key=4)
         if process:
             file = [file]
             predict_menu(file, process, crop, language, displayOriginal, True) 
-            st.session_state["Process"] = True
-            
-        if st.session_state["Process"]:
-            if st.button("Correct :thumbsup:", key=12):
-                st.session_state["Correct"] = True
-            if st.button("Incorrect :thumbsdown:", key=13):
-                st.session_state["Incorrect"] = True
-
-        if st.session_state["Correct"]:
-            st.balloons()
-            st.success("Am I getting better than humans :smirk:")
-            st.session_state["Correct"] = False
-            st.session_state["Process"] = False
-            
-        if st.session_state["Incorrect"]:
-            st.error("Sorry, maybe I should train more :confounded:")
-            st.session_state["Incorrect"] = False
-            st.session_state["Process"] = False
 
 
 with demo_view:
