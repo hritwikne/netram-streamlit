@@ -53,8 +53,10 @@ with app_view:
         crop = True if choice=="No, crop it automatically" else False
 
     with st.expander("Why is a cropped word image a preferred input?"):
-        st.write('''For an input image that is not cropped down to the word, two models are used in this application: 
+        st.markdown('''
+        For an input image that is not cropped down to the word, two machine learning models are used in this application: 
         (1) detecting text in the image and cropping it, and (2) recognising the word in that cropped image.  
+        
         So providing an uncropped image would pass it through two different models, thus multiplying the error rates.
         Therefore, for better predictions, provide a cropped word image so that only the recognition system has to be activated.
         ''')
