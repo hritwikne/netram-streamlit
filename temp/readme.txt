@@ -1,0 +1,1 @@
+This is a temporary folder where files uploaded by user is stored until it's processed.
