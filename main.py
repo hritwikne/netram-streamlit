@@ -136,5 +136,5 @@ with report_view:
 with contact_view:
     st.markdown('''
     For any queries, concerns, or suggestions,  
-    please send us a mail at **hritwikdileep@gmail.com**
+    please send me a mail at **hritwikdileep@gmail.com**
     ''')
