@@ -52,7 +52,13 @@ with app_view:
                           help="💡 **For better prediction accuracy, provide an image that is cropped to just the word that needs to be recognised. Please refer the *demo* page for an example of what this means.**")
         crop = True if choice=="No, crop it automatically" else False
 
-    #st.info("💡 Upload a cropped word image, rather than uncropped, for better prediction accuracy")
+    with st.expander("Why is a cropped word image a preferred input?"):
+        st.write('''For an input image that is not cropped down to the word, two models are used in this application: 
+        one for detecting text in the image and cropping it, and another for recognising the word in that cropped image.
+        So providing an uncropped image would pass it through two different models, implying the error rate is now multiplied.
+        Therefore, for better predictions, provide a cropped word image so that only the recognition system has to be activated.
+        ''')
+
     st.markdown(" ")
     uploadTab, takePictureTab = st.tabs(["Upload", "Take a picture"])
 
