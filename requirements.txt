@@ -1,5 +1,5 @@
 torch
 torchvision
-opencv-python
+opencv-python==4.5.5
 lmdb
 numpy==1.19.0
