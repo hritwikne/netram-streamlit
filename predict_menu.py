@@ -18,7 +18,8 @@ def predict_menu(file, process, crop, language, displayOriginal, takePicture=Fal
                 if crop or takePicture:
                     try:
                         ctpn_predict.crop(img_path)
-                    except:
+                    except Exception as e:
+                        st.write(e)
                         st.error("Couldn't process, please retake the image.")
                         st.stop()
 
