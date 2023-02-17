@@ -2,3 +2,4 @@ torch
 torchvision
 opencv-python
 lmdb
+numpy==1.19.0
