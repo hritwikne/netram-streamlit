@@ -9,28 +9,21 @@ class strLabelConverter(object):
     """Convert between str and label.
 
     NOTE:
-        Insert `blank` to the alphabet for CTC.
+        Insert `~` (blank) to the alphabet list for correct working of CTC.
 
     Args:
         alphabet (str): set of the possible characters.
-        ignore_case (bool, default=True): whether or not to ignore all of the case.
     """
 
-    def __init__(self, alphabet, ignore_case=True):
-        #self.x = 119
+    def __init__(self, alphabet):
         self.alphabet = alphabet
         self.dict = {}
         for i, char in enumerate(alphabet):
             self.dict[char.strip()] = i + 1
         
-        #self.dict['\u200c'] = 119
-        #self.dict['\u200d'] = 120
-        
         self.max_val = 1
         ctc_blank = '~'
         self.alphabet.insert(0, ctc_blank)
-        #print(self.dict, "\n\n")
-        #print(self.alphabet)
 
     def encode(self, text):
         """Support batch or single str.
@@ -63,7 +56,6 @@ class strLabelConverter(object):
             result_temp.append(r)
 
         text = result_temp
-        #print(text)
         return (torch.LongTensor(text), torch.LongTensor(length))
 
     def decode(self, t, length, raw=False):

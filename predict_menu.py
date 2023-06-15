@@ -4,8 +4,9 @@ from malayalam import demo_mal
 from text_detection import ctpn_predict
 import streamlit as st
 import os
+import requests
 
-def predict_menu(file, process, crop, language, displayOriginal, takePicture=False):
+def predict_menu(file, process, crop, language, displayOriginal, doTTS, takePicture=False):
     for i in range(len(file)):
         with open(os.path.join("temp",file[i].name),"wb") as f:
             f.write(file[i].getbuffer())
@@ -36,7 +37,16 @@ def predict_menu(file, process, crop, language, displayOriginal, takePicture=Fal
                     st.success(pred)
                     if displayOriginal:
                         st.markdown("**Cropped Input Image**")
-                        st.image(img_path)    
+                        st.image(img_path)  
+                    
+                    if doTTS:
+                        url = f'http://ivrapi.indiantts.co.in/tts?type=indiantts&text={pred}&api_key=2d108780-0b86-11e6-b056-07d516fb06e1d&user_id=80&action=play&lang=ml_mohita'
+                        response = requests.get(url) 
+                        if response.status_code == 200: 
+                            with open("tts.wav", 'wb') as file: 
+                                file.write(response.content) 
+                        else: 
+                            st.write("Couldn't process text to speech module")
 
         if file:
             os.remove(img_path)

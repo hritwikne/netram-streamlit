@@ -65,11 +65,14 @@ with app_view:
         file = st.file_uploader(f'Please upload the word image(s):', accept_multiple_files=True)
         st.markdown(" "); st.markdown(" ")
         displayOriginal = st.checkbox('Show the cropped input word image along with the result', key=1)
+        doTTS = st.checkbox("Do text to speech after recognising the text", key=9)
         st.markdown(" "); st.markdown(" ")
         
         process = st.button('Process', key=3)
         if process:
-            predict_menu(file, process, crop, language, displayOriginal, False)
+            predict_menu(file, process, crop, language, displayOriginal, doTTS, False)
+            if doTTS:
+                st.audio("tts.wav", format="audio/wav")
 
     with takePictureTab:
         space(1)
@@ -81,12 +84,15 @@ with app_view:
 
         space(2)
         displayOriginal = st.checkbox('Show the cropped input word image along with the result', key=2)
+        doTTS = st.checkbox("Do text to speech after recognising the text", key=10)
         st.markdown(" "); st.markdown(" ")
 
         process = st.button('Process', key=4)
         if process:
             file = [file]
-            predict_menu(file, process, crop, language, displayOriginal, True) 
+            predict_menu(file, process, crop, language, displayOriginal, doTTS, True) 
+            if doTTS:
+                st.audio("tts.wav", format="audio/wav")
 
 
 with demo_view:
