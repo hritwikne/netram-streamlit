@@ -1,6 +1,5 @@
 import streamlit as st
 from predict_menu import predict_menu
-from report_page import report_page
 from sidebar_page import sidebar_page
 
 def space(num_lines=1):
@@ -28,11 +27,11 @@ st.markdown('''
     Given the image of a (isolated) word in a natural scene (like billboards, banners), 
     the app predicts the text in the image. This problem is formally stated as **Scene Text Recognition**.  
       
-    *Check out the demo and report below for more details.*  
+    *Check out the demo provided below for more details.*  
 
 ''')
 
-app_view, demo_view, report_view, contact_view = st.tabs(["App", "Demo", "Report", "Contact"])
+app_view, demo_view, contact_view = st.tabs(["App", "Demo", "Contact"])
 st.markdown("&nbsp;  ")
 
 # demo 
@@ -59,16 +58,16 @@ with app_view:
 
     space(1)
     displayOriginal = st.checkbox('Show the cropped input word image along with the result', key=1)
-    doTTS = st.checkbox("Do text to speech after recognising the text", key=9)
+    doTTS = st.checkbox("Convert text to speech after recognising the text", key=9)
     uploadTab, takePictureTab = st.tabs(["Upload", "Take a picture"])
 
     with uploadTab:
-        st.markdown("   ")
         file = st.file_uploader(f'Please upload the word image(s):', accept_multiple_files=True)
         process = st.button('Process', key=3)
         if process:
             predict_menu(file, process, crop, language, displayOriginal, doTTS, False)
             if doTTS:
+                st.write("Listen the word:")
                 st.audio("tts.wav", format="audio/wav")
 
     with takePictureTab:
@@ -85,6 +84,7 @@ with app_view:
             file = [file]
             predict_menu(file, process, crop, language, displayOriginal, doTTS, True) 
             if doTTS:
+                st.write("Listen the word:")
                 st.audio("tts.wav", format="audio/wav")
 
 
@@ -121,11 +121,6 @@ with demo_view:
                 )
 
     
-
-# report
-with report_view:
-    report_page()
-
 
 with contact_view:
     st.markdown('''
