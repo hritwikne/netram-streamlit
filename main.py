@@ -59,16 +59,14 @@ with app_view:
     space(1)
     displayOriginal = st.checkbox('Show the cropped input word image along with the result', key=1)
     doTTS = st.checkbox("Convert text to speech after recognising the text", key=9)
+    doTranslate = st.checkbox("Show English translation of the recognised word", key=20)
     uploadTab, takePictureTab = st.tabs(["Upload", "Take a picture"])
 
     with uploadTab:
         file = st.file_uploader(f'Please upload the word image(s):', accept_multiple_files=True)
         process = st.button('Process', key=3)
         if process:
-            predict_menu(file, process, crop, language, displayOriginal, doTTS, False)
-            if doTTS:
-                st.write("Listen the word:")
-                st.audio("tts.wav", format="audio/wav")
+            predict_menu(file, process, crop, language, displayOriginal, doTTS, doTranslate, False)
 
     with takePictureTab:
         space(1)
@@ -82,10 +80,7 @@ with app_view:
         process = st.button('Process', key=4)
         if process:
             file = [file]
-            predict_menu(file, process, crop, language, displayOriginal, doTTS, True) 
-            if doTTS:
-                st.write("Listen the word:")
-                st.audio("tts.wav", format="audio/wav")
+            predict_menu(file, process, crop, language, displayOriginal, doTTS, doTranslate, True) 
 
 
 with demo_view:
